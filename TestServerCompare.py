@@ -18,10 +18,11 @@
 Test script for the ServerCompare.py script in the utilities folder.
 """
    
+import unittest
 from unittest import mock
 import os, sys, filecmp
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "uffizi")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "uffizi")))
 
 from utilities.ServerCompare import ServerCompare
 
@@ -32,7 +33,7 @@ OUTPUT_ADD = "target_add.txt"
 OUTPUT_DEL = "target_del.txt"
 OUTPUT_UPD = "target_upd.txt"
 
-OUTPUT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "uffizi", "utilities", "output"))
+OUTPUT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "uffizi", "utilities", "output"))
 
 DATA_PATH = os.path.join(
             os.path.dirname(os.path.realpath(__file__)), 
@@ -53,8 +54,8 @@ class TestServerCompare(unittest.TestCase):
         
     def setUp(self):
         self.server_comp = ServerCompare()
-        self.source = {'/1.txt': 0, '/2.txt': 0, '/4.txt': 9}
-        self.target = {'/2.txt': 0, '/3.txt': 0, '/4.txt': 0}
+        self.source = {'1.txt': 0, '2.txt': 0, '4.txt': 9}
+        self.target = {'2.txt': 0, '3.txt': 0, '4.txt': 0}
         
 
     @mock.patch('builtins.input', 
@@ -115,6 +116,10 @@ class TestServerCompare(unittest.TestCase):
         self.server_comp.write_file_source()
         
         output_file = os.path.join(OUTPUT_PATH, SOURCE_FILE)
+        
+        print(" ")
+        print("output file : {}".format(output_file))
+        print("Gold file   : {}".format(GOLD_SOURCE_FILE))
         self.assertTrue(filecmp.cmp(output_file, GOLD_SOURCE_FILE))
         
         
@@ -190,11 +195,11 @@ class TestServerCompare(unittest.TestCase):
         source_file = os.path.join(OUTPUT_PATH, SOURCE_FILE)
         target_file = os.path.join(OUTPUT_PATH, TARGET_FILE)
         
-        if os.path.isfile(source_file):
-            os.remove(source_file)
+        #if os.path.isfile(source_file):
+        #    os.remove(source_file)
             
-        if os.path.isfile(target_file):
-            os.remove(target_file)
+        #if os.path.isfile(target_file):
+        #    os.remove(target_file)
 
 
 if __name__ == '__main__':
