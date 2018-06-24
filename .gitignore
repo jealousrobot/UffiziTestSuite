@@ -1,0 +1,8 @@
+
+data/TestServerCompare/gold/other/source.txt
+data/TestServerCompare/gold/other/target.txt
+data/TestServerCompare/gold/other/target_add.txt
+data/TestServerCompare/gold/other/target_del.txt
+data/TestServerCompare/gold/other/target_upd.txt
+data/TestServerCompare/gold/target_add.txt
+data/TestServerCompare/gold/target_del.txt
